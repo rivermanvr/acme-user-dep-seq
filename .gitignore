@@ -2,7 +2,7 @@
 **.solution.js
 docs
 
-# installed packages (better: 'yarn' / `npm install` / `bower install`)
+# installed packages
 node_modules
 bower_components
 
@@ -14,8 +14,4 @@ bower_components
 .Trashes
 ehthumbs.db
 Thumbs.db
-
-# Logs and databases
-*.log
-*.sqlite
 
