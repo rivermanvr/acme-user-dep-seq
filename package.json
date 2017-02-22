@@ -3,6 +3,9 @@
   "version": "1.0.0",
   "description": "User & Dept tables in progres",
   "main": "server.js",
+  "scripts": {
+    "start:dev": "nodemon server.js"
+  },
   "repository": "https://github.com/rivermanvr/acme-user-dep-seq.git",
   "author": "Vince Rios",
   "license": "MIT",
