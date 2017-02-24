@@ -16,7 +16,8 @@ const User_Dept = acmeDB.define('user_dept', {
     deptID: acmeDB.Sequelize.INTEGER
 });
 
-
+User.hasMany(User_Dept);
+Department.hasMany(User_Dept);
 
 const sync = () => {
     return acmeDB.sync({ force: true });
