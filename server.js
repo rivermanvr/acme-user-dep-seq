@@ -12,8 +12,7 @@ const User = acmeDB.define('user', {
     name: acmeDB.Sequelize.STRING
 });
 const User_Dept = acmeDB.define('user_dept', {
-    userID: acmeDB.Sequelize.INTEGER,
-    deptID: acmeDB.Sequelize.INTEGER
+
 });
 
 User.hasMany(User_Dept);
