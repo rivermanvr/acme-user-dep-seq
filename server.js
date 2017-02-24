@@ -11,6 +11,12 @@ const Department = acmeDB.define('department', {
 const User = acmeDB.define('user', {
     name: acmeDB.Sequelize.STRING
 });
+const User_Dept = acmeDB.define('user_dept', {
+    userID: acmeDB.Sequelize.INTEGER,
+    deptID: acmeDB.Sequelize.INTEGER
+});
+
+
 
 const sync = () => {
     return acmeDB.sync({ force: true });
@@ -18,7 +24,12 @@ const sync = () => {
 
 const seed = () => {
     return sync()
-        .then();
+        .then(() => User.create({name: 'Vince'}))
+        .then(() => User.create({name: 'Gary'}))
+        .then(() => User.create({name: 'Roy'}))
+        .then(() => Department.create({name: 'Human Resources'}))
+        .then(() => Department.create({name: 'Accounting'}))
+        .then(() => Department.create({name: 'Information Technology'}))
 };
 
 seed()
