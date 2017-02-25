@@ -11,9 +11,7 @@ const Department = acmeDB.define('department', {
 const User = acmeDB.define('user', {
     name: acmeDB.Sequelize.STRING
 });
-const User_Dept = acmeDB.define('user_dept', {
-
-});
+const User_Dept = acmeDB.define('user_dept', {});
 
 User.hasMany(User_Dept);
 Department.hasMany(User_Dept);
@@ -28,8 +26,13 @@ const seed = () => {
         .then(() => User.create({name: 'Gary'}))
         .then(() => User.create({name: 'Roy'}))
         .then(() => Department.create({name: 'Human Resources'}))
-        .then(() => Department.create({name: 'Accounting'}))
+        .then(() => Department.create({name: 'Security'}))
         .then(() => Department.create({name: 'Information Technology'}))
+        .then(() => Department.create({name: 'Production'}))
+        .then(() => User_Dept.create({userId: 1, departmentId: 3}))
+        .then(() => User_Dept.create({userId: 1, departmentId: 4}))
+        .then(() => User_Dept.create({userId: 2, departmentId: 4}))
+        .then(() => User_Dept.create({userId: 3, departmentId: 2}))
 };
 
 seed()
