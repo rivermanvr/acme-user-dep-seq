@@ -23,6 +23,8 @@ const UserDept = acmeDB.define('user_dept', {});
 
 User.hasMany(UserDept);
 Department.hasMany(UserDept);
+UserDept.belongsTo(User);
+UserDept.belongsTo(Department);
 
 const sync = () => {
     return acmeDB.sync({ force: true });
@@ -73,7 +75,9 @@ const seed = () => {
             });
         })
         .then( department => {
-            console.log('# of users in production are: ', department.user_depts.length)
+            console.log('# of users in production are: ', department.user_depts.length);
+            console.log('user #1 in production is: ', department.user_depts[0].get());
+            console.log('user #2 in production is: ', department.user_depts[1].get());
         })
         //--------------------------------------------------------
 };
