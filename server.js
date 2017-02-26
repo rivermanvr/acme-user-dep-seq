@@ -22,17 +22,31 @@ const sync = () => {
 
 const seed = () => {
     return sync()
-        .then(() => User.create({name: 'Vince'}))
-        .then(() => User.create({name: 'Gary'}))
-        .then(() => User.create({name: 'Roy'}))
-        .then(() => Department.create({name: 'Human Resources'}))
-        .then(() => Department.create({name: 'Security'}))
-        .then(() => Department.create({name: 'Information Technology'}))
-        .then(() => Department.create({name: 'Production'}))
-        .then(() => User_Dept.create({userId: 1, departmentId: 3}))
-        .then(() => User_Dept.create({userId: 1, departmentId: 4}))
-        .then(() => User_Dept.create({userId: 2, departmentId: 4}))
-        .then(() => User_Dept.create({userId: 3, departmentId: 2}))
+        .then(() => {
+            return Promise.all([
+                User.create({name: 'Vince'}),
+                User.create({name: 'Gary'}),
+                User.create({name: 'Roy'}),
+                User.create({name: 'Karen'})
+            ])
+        })
+        .then(() => {
+            return Promise.all([
+                Department.create({name: 'Human Resources'}),
+                Department.create({name: 'Security'}),
+                Department.create({name: 'Information Technology'}),
+                Department.create({name: 'Production'})
+            ])
+        })
+        .then(() => {
+            return Promise.all([
+                User_Dept.create({userId: 1, departmentId: 3}),
+                User_Dept.create({userId: 1, departmentId: 4}),
+                User_Dept.create({userId: 2, departmentId: 4}),
+                User_Dept.create({userId: 3, departmentId: 2}),
+                User_Dept.create({userId: 4, departmentId: 1})
+            ])
+        })
 };
 
 seed()
@@ -40,5 +54,6 @@ seed()
     .catch( err => console.log(err));
 
 console.log('Models: ', acmeDB.models);
+
 const port = process.env.PORT || 3000;
 server.listen(port, () => console.log(`listening on port ${port}`));
