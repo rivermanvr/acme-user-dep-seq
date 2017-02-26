@@ -66,19 +66,69 @@ const seed = () => {
                 UserDept.create({userId: roy.id, departmentId: secur.id}),
                 UserDept.create({userId: karen.id, departmentId: humanR.id})
             ])
+        })
         //--------------------------------------------------------
-        //making sure I understand the data and how to get at it.
-        })
-        .then( result => {
-            return Department.findById(prod.id, {
-                include: [UserDept]
-            });
-        })
-        .then( department => {
-            console.log('# of users in production are: ', department.user_depts.length);
-            console.log('user #1 in production is: ', department.user_depts[0].get());
-            console.log('user #2 in production is: ', department.user_depts[1].get());
-        })
+        // //Making sure I understand the data and how to get at it.
+        // //This is before I put in the many to one relationship from
+        // //UserDept to both User & Departments.
+
+            // .then( result => {
+            //     return Department.findById(prod.id, {
+            //         include: [UserDept]
+            //     });
+            // })
+            // .then( department => {
+            //     console.log('# of users in production are: ', department.user_depts.length);
+            //     console.log('user #1 in production is: ', department.user_depts[0].get());
+            //     console.log('user #2 in production is: ', department.user_depts[1].get());
+            // })
+
+            // //returned the following:
+            //         // # of users in production are:  2
+
+            //         // user #1 in production is:  { id: 1,
+            //         // createdAt: 2017-02-26T22:18:37.899Z,
+            //         // updatedAt: 2017-02-26T22:18:37.899Z,
+            //         // userId: 2,
+            //         // departmentId: 4 }
+
+            //         // user #2 in production is:  { id: 2,
+            //         // createdAt: 2017-02-26T22:18:37.899Z,
+            //         // updatedAt: 2017-02-26T22:18:37.899Z,
+            //         // userId: 1,
+            //         // departmentId: 4 }
+
+        //--------------------------------------------------------
+        // //This is after I put in the many to one relationship from
+        // //UserDept to both User & Departments.
+
+        
+            .then( result => {
+                return Department.findById(prod.id, {
+                    include: [ {
+                        model: UserDept,
+                        include: [ User ]
+                    } ]
+                });
+            })
+            .then( department => {
+                console.log('# of users in production are: ', department.user_depts.length);
+                console.log('user #1 in production is: ', department.user_depts[0].user.get());
+                console.log('user #2 in production is: ', department.user_depts[1].user.get());
+            })
+            // //returned the following:
+                        // # of users in production are:  2
+
+                        // user #1 in production is:  { id: 1,
+                        // name: 'Vince',
+                        // createdAt: 2017-02-26T22:28:56.677Z,
+                        // updatedAt: 2017-02-26T22:28:56.677Z }
+
+                        // user #2 in production is:  { id: 2,
+                        // name: 'Gary',
+                        // createdAt: 2017-02-26T22:28:56.677Z,
+                        // updatedAt: 2017-02-26T22:28:56.677Z }
+
         //--------------------------------------------------------
 };
 
