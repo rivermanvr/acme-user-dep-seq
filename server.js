@@ -29,6 +29,8 @@ const sync = () => {
 };
 
 const seed = () => {
+    //doing this just to remember & use .spread
+    let vin, gary, roy, karen, humanR, secur, iTech, prod;
     return sync()
         .then(() => {
             return Promise.all([
@@ -38,7 +40,11 @@ const seed = () => {
                 User.create({name: 'Karen'}),
             ])
         })
-        .then(() => {
+        .spread(( _vin, _gary, _roy, _karen ) => {
+            vin = _vin;
+            gary = _gary;
+            roy = _roy;
+            karen = _karen;
             return Promise.all([
                 Department.create({name: 'Human Resources'}),
                 Department.create({name: 'Security'}),
@@ -46,15 +52,30 @@ const seed = () => {
                 Department.create({name: 'Production'})
             ])
         })
-        .then(() => {
+        .spread(( _humanR, _secur, _iTech, _prod ) => {
+            humanR = _humanR;
+            secur = _secur;
+            iTech = _iTech;
+            prod = _prod;
             return Promise.all([
-                UserDept.create({userId: 1, departmentId: 3}),
-                UserDept.create({userId: 1, departmentId: 4}),
-                UserDept.create({userId: 2, departmentId: 4}),
-                UserDept.create({userId: 3, departmentId: 2}),
-                UserDept.create({userId: 4, departmentId: 1})
+                UserDept.create({userId: vin.id, departmentId: iTech.id}),
+                UserDept.create({userId: vin.id, departmentId: prod.id}),
+                UserDept.create({userId: gary.id, departmentId: prod.id}),
+                UserDept.create({userId: roy.id, departmentId: secur.id}),
+                UserDept.create({userId: karen.id, departmentId: humanR.id})
             ])
+        //--------------------------------------------------------
+        //making sure I understand the data and how to get at it.
         })
+        .then( result => {
+            return Department.findById(prod.id, {
+                include: [UserDept]
+            });
+        })
+        .then( department => {
+            console.log('# of users in production are: ', department.user_depts.length)
+        })
+        //--------------------------------------------------------
 };
 
 seed()
