@@ -7,14 +7,22 @@ const acmeDB = new Sequelize(connectDB);
 
 const Department = acmeDB.define('department', {
     name: acmeDB.Sequelize.STRING
+}, {
+    classMethods: {
+        getDept: function (deptId) {
+            return this.findAll({
+                where: deptId
+            })
+        }
+    }
 });
 const User = acmeDB.define('user', {
     name: acmeDB.Sequelize.STRING
 });
-const User_Dept = acmeDB.define('user_dept', {});
+const UserDept = acmeDB.define('user_dept', {});
 
-User.hasMany(User_Dept);
-Department.hasMany(User_Dept);
+User.hasMany(UserDept);
+Department.hasMany(UserDept);
 
 const sync = () => {
     return acmeDB.sync({ force: true });
@@ -27,7 +35,7 @@ const seed = () => {
                 User.create({name: 'Vince'}),
                 User.create({name: 'Gary'}),
                 User.create({name: 'Roy'}),
-                User.create({name: 'Karen'})
+                User.create({name: 'Karen'}),
             ])
         })
         .then(() => {
@@ -40,11 +48,11 @@ const seed = () => {
         })
         .then(() => {
             return Promise.all([
-                User_Dept.create({userId: 1, departmentId: 3}),
-                User_Dept.create({userId: 1, departmentId: 4}),
-                User_Dept.create({userId: 2, departmentId: 4}),
-                User_Dept.create({userId: 3, departmentId: 2}),
-                User_Dept.create({userId: 4, departmentId: 1})
+                UserDept.create({userId: 1, departmentId: 3}),
+                UserDept.create({userId: 1, departmentId: 4}),
+                UserDept.create({userId: 2, departmentId: 4}),
+                UserDept.create({userId: 3, departmentId: 2}),
+                UserDept.create({userId: 4, departmentId: 1})
             ])
         })
 };
