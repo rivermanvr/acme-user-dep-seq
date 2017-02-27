@@ -1,5 +1,6 @@
 const express = require( 'express' );
 const server = express();
+const acmeDB = require( './db' );
 const methodOverride = require( 'method-override' );
 const bodyParser = require( 'body-parser' );
 const path = require( 'path' );
@@ -16,14 +17,14 @@ server.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
 server.use('/css', express.static(path.join(__dirname, './css')));
 
 server.get('/', (req, res, next) => {
-    Department.findAll({
-        include: [UserDept]
+    acmeDB.models.Department.findAll({
+        include: [acmeDB.models.UserDept]
     })
     .then(departments => res.render('index', {departments} ))
     .catch(next);
 })
 
-seed()
+acmeDB.seed()
     .then(() => console.log('your data is seeded'))
     .catch( err => console.log(err));
 
