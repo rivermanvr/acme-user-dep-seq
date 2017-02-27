@@ -4,6 +4,7 @@
   "description": "User & Dept tables in progres",
   "main": "server.js",
   "scripts": {
+    "test:dev": "nodemon ./node_modules/mocha/bin/mocha",
     "start:dev": "nodemon server.js"
   },
   "repository": "https://github.com/rivermanvr/acme-user-dep-seq.git",
