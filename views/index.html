@@ -1,6 +1,36 @@
 {% extends './layout.html' %}
 {% block content %}
-    Hello Vince!
+    <h3 class= 'title'>Acme Users & Departments Sequelize</h3>
+    <div class='row'>
+        <div class='col-sm-6'>
+            <div class = 'well formMargin'>
+                <form action='/departments' method='POST'>
+                    <label for="dept_name">Department Name:</label>
+                    <input name='name' type='text' id='deptName' style='width: 270px;' placeholder='add a new dept...'>
+                    <button class='btn btn-default' aria-label='Left Align'>
+                        <span class='glyphicon glyphicon-hand-up' aria-hidden='true'></span>
+                        Add
+                    </button>
+                </form>
+            </div>
+        </div>
+        <div class='col-sm-6'>
+            <div class = 'well formMargin'>
+                <form action='/users' method='POST'>
+                    <label for="user_name">User Name:</label>
+                    <input name='name' type='text' id='userName' style='width: 270px;' placeholder='add a new user...'>
+                    <button class='btn btn-default' aria-label='Left Align'>
+                        <span class='glyphicon glyphicon-hand-up' aria-hidden='true'></span>
+                        Add
+                    </button>
+                </form>
+            </div>
+        </div>
+    </div>
+    
+    
+    
+    
     <ul>
         {% for department in departments %}
             <li
