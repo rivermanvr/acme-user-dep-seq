@@ -1,0 +1,21 @@
+<html>
+    <head>
+        <title></title>
+    </head>
+    <body>
+        <ul>
+        {% for department in departments %}
+            <li
+                {% if department.hasMultipleUsers() %}
+                    style='color: green'
+                {% else %}
+                    style='color: red'
+                {% endif %}
+                >
+                {{ department.name }}
+                {{ department.hasMultipleUsers() }}
+            </li>
+        {% endfor %} 
+        </ul>   
+    </body>
+</html>

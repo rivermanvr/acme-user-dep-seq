@@ -8,11 +8,19 @@ server.set( 'view engine', 'html' );
 server.engine( 'html', swig.renderFile );
 
 
+// server.get('/departmentsList', (req, res, next) => {
+//     Department.findAll({
+//         include: [UserDept]
+//     })
+//     .then(departments => res.send(departments))
+//     .catch(next);
+// })
+
 server.get('/departmentsList', (req, res, next) => {
     Department.findAll({
         include: [UserDept]
     })
-    .then(departments => res.send(departments))
+    .then(departments => res.render('index', { departments }))
     .catch(next);
 })
 
@@ -24,7 +32,7 @@ const Department = acmeDB.define('department', {
 }, {
     instanceMethods: {
         hasMultipleUsers: function () {
-            return true;
+            return this.user_depts.length >1;
             }
         }
     });
