@@ -1,6 +1,5 @@
 const express = require( 'express' );
 const server = express();
-const Sequelize = require( 'sequelize' );
 const methodOverride = require( 'method-override' );
 const bodyParser = require( 'body-parser' );
 const path = require( 'path' );
@@ -24,8 +23,6 @@ server.get('/', (req, res, next) => {
     .catch(next);
 })
 
-const connectDB = process.env.DATABASE_URL || 'postgres://localhost/acme_sql';
-const acmeDB = new Sequelize(connectDB);
 
 const Department = acmeDB.define('department', {
     name: acmeDB.Sequelize.STRING
