@@ -3,19 +3,29 @@ const acmeDB = require( './db' );
 const User = acmeDB.define('user', {
     name: acmeDB.Sequelize.STRING
 }, {
-    instanceMethods: {
-        hasMoreRowData: function () {
+    // instanceMethods: {
+    //     hasMoreRowData: function () {
 
-        }
-    },
-    getterMethods: {
-        getSomeRowData: function() {
+    //     }
+    // },
+    // getterMethods: {
+    //     getSomeRowData: function() {
 
-        }
-    },
+    //     }
+    // },
     classMethods: {
-        getRowsOfData: function() {
-
+        addUserName: function (name) {
+            return this.create({name: name});
+        },
+        delUserID: function (userID) {
+            return this.destroy({
+                where: {
+                    id: userID
+                }
+            })
+            // .then(() => {
+            //     return acmeDB.models.UserDept.cleanRec();
+            // })
         }
     }
 });

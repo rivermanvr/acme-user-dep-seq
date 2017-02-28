@@ -11,7 +11,6 @@ router.post('/', (req, res, next) => {
 })
 
 router.delete('/:id', (req, res, next) => {
-    console.log(req.params.id);
     acmeDB.models.Department.delDeptID(req.params.id)
         .then(res.redirect( '/' ))
 })

@@ -41,19 +41,18 @@
             </div>
             <h3 class='columnHead'>Users</h3>
             <ul>
-            {% for department in departments %}
-                <li class='deptList well'
-                    {% if department.hasMultipleUsers() %}
-                        style='color: green'
-                    {% else %}
-                        style='color: red'
-                    {% endif %}
-                    >
-                    {{ department.name }} :
-                    {{ department.hasMultipleUsers() }}
+            {% for user in users %}
+                <li class='userList well'>
+                    <form action='/users/{{ user.id }}?_method=DELETE' method='POST'>
+                        {{ user.name }} :
+                        <button class='btn btn-default btn-danger pull-right' aria-label='Left Align'>
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            delete
+                        </button>
+                    </form>
                 </li>
             {% endfor %} 
-            </ul> 
+            </ul>  
         </div>
     </div>
 {% endblock %}

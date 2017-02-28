@@ -19,12 +19,17 @@ server.use('/departments', require('./routes/departments'));
 server.use('/users', require('./routes/users'));
 
 server.get('/', (req, res, next) => {
-    acmeDB.models.Department.findAll({
-        include: [acmeDB.models.UserDept]
+    Promise.all([
+        acmeDB.models.Department.findAll(),
+        acmeDB.models.User.findAll({
+            include: [acmeDB.models.UserDept]
+        })
+    ])
+    .then((nestedArr) => {
+        res.render('index', {departments: nestedArr[0], users: nestedArr[1]} )
     })
-    .then(departments => res.render('index', {departments} ))
     .catch(next);
-})
+});
 
 acmeDB.seed()
     .then(() => console.log('your data is seeded'))

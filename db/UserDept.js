@@ -12,12 +12,30 @@ const UserDept = acmeDB.define('user_dept', {}, {
         }
     },
     classMethods: {
-        delByDeptID: function (deptID) {
-            return this.findAll(
-                {
-                    where: {departmentId: deptID}
+        cleanRec: function () {
+            return this.findAll({
+                where: {
+                    $or: [
+                        {
+                            userId: null
+                        },
+                        {
+                            departmentId: null
+                        }
+                    ]
+                }
+            })
+            .then((result) => {
+                result.forEach((record) => {
+                    
+                    return this.destroy({
+                        where: {
+                            id: record.id
+                        }
+                    })
                 })
-            }
+            })
+        }
     }
 
 });

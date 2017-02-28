@@ -71,4 +71,10 @@ b, strong{
 }
 .deptList {
 	border: 1px solid #000;
+	box-sizing: border-box;
+}
+.userList {
+	border: 1px solid #000;
+	box-sizing: border-box;
+
 }

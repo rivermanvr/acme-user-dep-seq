@@ -8,6 +8,9 @@ Department.hasMany(UserDept);
 UserDept.belongsTo(User);
 UserDept.belongsTo(Department);
 
+User.belongsToMany(Department, { through: 'UserDept', foreignKey: 'userId' });
+Department.belongsToMany(User, { through: 'UserDept', foreignKey: 'departmentId' });
+
 const sync = () => {
     return acmeDB.sync({ force: true });
 };
