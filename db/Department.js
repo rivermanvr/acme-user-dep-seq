@@ -5,12 +5,10 @@ const Department = acmeDB.define('department', {
 }, {
     instanceMethods: {
         xxx: function (name) {
-
         }
     },
     getterMethods: {
         yyy: function() {
-
         }
     },
     classMethods: {
@@ -18,12 +16,12 @@ const Department = acmeDB.define('department', {
             return this.create({name: name});
         },
         delDeptID: function (deptID) {
-                return this.destroy({
-                    where: {
-                        id: deptID
-                    }
-                });
-            }
+            return this.destroy({
+                where: {
+                    id: deptID
+                }
+            })
+        }
     }
 });
 

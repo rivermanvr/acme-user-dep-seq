@@ -12,10 +12,14 @@ const UserDept = acmeDB.define('user_dept', {}, {
         }
     },
     classMethods: {
-        getUserDeptSize: function() {
-
-        }
+        delByDeptID: function (deptID) {
+            return this.findAll(
+                {
+                    where: {departmentId: deptID}
+                })
+            }
     }
+
 });
 
 module.exports = UserDept;
