@@ -12,30 +12,35 @@ const UserDept = acmeDB.define('user_dept', {}, {
         }
     },
     classMethods: {
-        cleanRec: function () {
-            return this.findAll({
-                where: {
-                    $or: [
-                        {
-                            userId: null
-                        },
-                        {
-                            departmentId: null
-                        }
-                    ]
-                }
-            })
-            .then((result) => {
-                result.forEach((record) => {
+        // findLink: function (user_id, dept_id) {
+        //     return this.findAll(
+        //         where: { userId: user_id, departmentId: dept_id }
+        //         );
+        // },
+        // cleanRec: function () {
+        //     return this.findAll({
+        //         where: {
+        //             $or: [
+        //                 {
+        //                     userId: null
+        //                 },
+        //                 {
+        //                     departmentId: null
+        //                 }
+        //             ]
+        //         }
+        //     })
+        //     .then((result) => {
+        //         result.forEach((record) => {
                     
-                    return this.destroy({
-                        where: {
-                            id: record.id
-                        }
-                    })
-                })
-            })
-        }
+        //             return this.destroy({
+        //                 where: {
+        //                     id: record.id
+        //                 }
+        //             })
+        //         })
+        //     })
+        // }
     }
 
 });

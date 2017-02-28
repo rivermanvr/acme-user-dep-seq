@@ -22,7 +22,6 @@ server.get('/', (req, res, next) => {
     Promise.all([
         acmeDB.models.Department.findAll(),
         acmeDB.models.User.findAll({
-            include: [acmeDB.models.UserDept]
         })
     ])
     .then((nestedArr) => {

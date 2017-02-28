@@ -47,9 +47,26 @@
                         {{ user.name }} :
                         <button class='btn btn-default btn-danger pull-right' aria-label='Left Align'>
                             <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
-                            delete
+                            delete user
                         </button>
                     </form>
+
+                    <ul>
+                    {% for department in departments %}
+                        <li
+                            {% if false %}
+                                style='color: green'
+                            {% else %}
+                                style='color: red'
+                            {% endif %}
+                            >
+                            <button>
+                                {{ department.name }}
+                            </button>
+                        </li>
+                    {% endfor %} 
+                    </ul>  
+
                 </li>
             {% endfor %} 
             </ul>  
