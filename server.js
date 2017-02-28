@@ -15,6 +15,8 @@ server.use(methodOverride( '_method' ))
 
 server.use('/vendor', express.static(path.join(__dirname, 'node_modules')));
 server.use('/css', express.static(path.join(__dirname, './css')));
+server.use('/departments', require('./routes/departments'));
+server.use('/users', require('./routes/users'));
 
 server.get('/', (req, res, next) => {
     acmeDB.models.Department.findAll({

@@ -14,6 +14,19 @@
                 </form>
             </div>
             <h3 class='columnHead'>Departments</h3>
+            <ul>
+            {% for department in departments %}
+                <li class='deptList well'>
+                    <form action='/departments/{{ department.id }}?_method=DELETE' method='POST'>
+                        {{ department.name }} :
+                        <button class='btn btn-default btn-danger pull-right' aria-label='Left Align'>
+                            <span class="glyphicon glyphicon-trash" aria-hidden="true"></span>
+                            delete
+                        </button>
+                    </form>
+                </li>
+            {% endfor %} 
+            </ul>   
         </div>
         <div class='col-sm-6'>
             <div class = 'well formMargin'>
@@ -27,24 +40,20 @@
                 </form>
             </div>
             <h3 class='columnHead'>Users</h3>
+            <ul>
+            {% for department in departments %}
+                <li class='deptList well'
+                    {% if department.hasMultipleUsers() %}
+                        style='color: green'
+                    {% else %}
+                        style='color: red'
+                    {% endif %}
+                    >
+                    {{ department.name }} :
+                    {{ department.hasMultipleUsers() }}
+                </li>
+            {% endfor %} 
+            </ul> 
         </div>
     </div>
-    
-    
-    
-    
-    <ul>
-        {% for department in departments %}
-            <li
-                {% if department.hasMultipleUsers() %}
-                    style='color: green'
-                {% else %}
-                    style='color: red'
-                {% endif %}
-                >
-                {{ department.name }} :
-                {{ department.hasMultipleUsers() }}
-            </li>
-        {% endfor %} 
-        </ul>   
 {% endblock %}

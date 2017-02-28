@@ -30,10 +30,10 @@ const seed = () => {
             roy = _roy;
             karen = _karen;
             return Promise.all([
-                Department.create({name: 'Human Resources'}),
-                Department.create({name: 'Security'}),
-                Department.create({name: 'Information Technology'}),
-                Department.create({name: 'Production'})
+                Department.addDeptName('Human Resources'),
+                Department.addDeptName('Security'),
+                Department.addDeptName('Information Technology'),
+                Department.addDeptName('Production')
             ])
         })
         .spread(( _humanR, _secur, _iTech, _prod ) => {

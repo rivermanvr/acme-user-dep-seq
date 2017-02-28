@@ -69,3 +69,6 @@ b, strong{
 .columnHead {
     margin-bottom: 20px;
 }
+.deptList {
+	border: 1px solid #000;
+}

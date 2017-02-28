@@ -4,18 +4,18 @@ const Department = acmeDB.define('department', {
     name: acmeDB.Sequelize.STRING
 }, {
     instanceMethods: {
-        hasMoreRowData: function () {
+        xxx: function (name) {
 
         }
     },
     getterMethods: {
-        getSomeRowData: function() {
+        yyy: function() {
 
         }
     },
     classMethods: {
-        getRowsOfData: function() {
-
+        addDeptName: function (name) {
+            return this.create({name: name});
         }
     }
 });
