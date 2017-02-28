@@ -2,52 +2,33 @@ const expect = require( 'chai' ).expect;
 const acmeDB = require( '../db' );
 
 describe('Models testing', () => {
-     beforeEach((done) => {
+    let userRecords;
+    let deptRecords;
+    let userDeptRec;
+    beforeEach((done) => {
         acmeDB.seed()
-            .then(done())
-            .catch(err => done(err));
-     });
-});
+            .then(acmeDB.models.User.findAll())
+            .then( _userRecords => userRecords = _userRecords)
+            .then(acmeDB.models.Department.findAll())
+            .then( _deptRecords => deptRecords = _deptRecords)
+            .then(acmeDB.models.UserDept.findAll())
+            .then( _userDeptRec => userDeptRec = _userDeptRec)
+            .catch( err => done(err));
+        });
+
     describe('User table: test data and methods', () => {
-        
+        describe('seeded data check', () => {
+            it('There are 4 users', () => {
+                expect(userRecords.length).to.equal(4);
+            })
+        })
     });
 
-
-
-
-
-  describe('Story', ()=> {
-    let stories;
-    beforeEach((done)=> {
-      db.models.Story.findAll()
-        .then( _stories=> stories = _stories )
-        .then( ()=> done())
-        .catch( e => done(e));
-    });
-
-    describe('seeded data', ()=> {
-      it('there are 4 stories', ()=> {
-        expect(stories.length).to.equal(4);
-      });
-    });
-  });
-
-  describe('User', ()=> {
-    it('exists', ()=> {
-      expect(db.models.User).to.be.ok;
-    });
-
-    describe('seeded data', ()=> {
-      let users;
-      beforeEach((done)=> {
-        db.models.User.findAll()
-          .then( _users => users = _users)
-          .then( ()=> done())  
-          .catch( err=> done(err));
-      });
-      it('there are two users', ()=> {
-        expect(users.length).to.equal(2);
-      });
-    });
-  });
+    describe('Department table: test data and methods', () => {
+        describe('seeded data check', () => {
+            it('There are 4 Departments', () => {
+                expect(deptRecords.length).to.equal(4);
+            })
+        })
+    })
 });

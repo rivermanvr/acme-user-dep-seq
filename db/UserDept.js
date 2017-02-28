@@ -12,7 +12,7 @@ const UserDept = acmeDB.define('user_dept', {}, {
         }
     },
     classMethods: {
-        getRowsOfData: function() {
+        getUserDeptSize: function() {
 
         }
     }
