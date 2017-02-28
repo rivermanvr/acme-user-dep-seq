@@ -16,7 +16,14 @@ const Department = acmeDB.define('department', {
     classMethods: {
         addDeptName: function (name) {
             return this.create({name: name});
-        }
+        },
+        delDeptID: function (deptID) {
+                return this.destroy({
+                    where: {
+                        id: deptID
+                    }
+                });
+            }
     }
 });
 

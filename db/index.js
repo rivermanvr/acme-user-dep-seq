@@ -58,4 +58,5 @@ module.exports = {
         UserDept
     },
     seed,
+    sync
 };
