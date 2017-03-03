@@ -1,3 +1,7 @@
+//Will come back to this project shortly....
+//Need to make instance methods to feed routes.
+// also need to on delete:  cascade....
+
 const acmeDB = require( './db' );
 
 const User = acmeDB.define('user', {
