@@ -1,3 +1,5 @@
+//started testing, but need to come back to this as well....
+
 const expect = require( 'chai' ).expect;
 const acmeDB = require( '../db' );
 
